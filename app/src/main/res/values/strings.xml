@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RunTimePermissionWithInheritance</string>
+    <string name="open_fragment_a">Open Fragment A</string>
+    <string name="open_fragment_b">Open Fragment B</string>
+    <string name="read_write_request">Read Write Request</string>
+    <string name="fragment_a">Fragment A</string>
+    <string name="fragment_b">Fragment B</string>
+</resources>
