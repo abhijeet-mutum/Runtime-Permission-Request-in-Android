@@ -29,7 +29,11 @@ class FragmentB : BaseParentFragment() {
 
     private fun attachClickListeners() {
         mbRequestPermission.setOnClick {
-            launchPermissionRequest()
+            if (isPermissionGranted()) {
+                showToast(requireActivity(), "READ WRITE PERMISSION GRANTED")
+            } else {
+                launchPermissionRequest()
+            }
         }
     }
 

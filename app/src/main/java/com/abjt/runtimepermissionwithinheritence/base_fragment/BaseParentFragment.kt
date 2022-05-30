@@ -1,8 +1,11 @@
 package com.abjt.runtimepermissionwithinheritence.base_fragment
 
+import android.content.pm.PackageManager
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.abjt.runtimepermissionwithinheritence.helpers.Permissions
+import com.abjt.runtimepermissionwithinheritence.helpers.readWritePermissionRequest
 
 abstract class BaseParentFragment : Fragment() {
 
@@ -26,11 +29,20 @@ abstract class BaseParentFragment : Fragment() {
         onPermissionResult(validateResult())
     }
 
-    fun launchPermissionRequest() = activityResultLauncher.launch(arrayOf(Permissions.READ_PERMISSION.permissionName, Permissions.WRITE_PERMISSION.permissionName))
+    fun launchPermissionRequest() {
+        activityResultLauncher.launch(readWritePermissionRequest())
+    }
 
     private fun validateResult(): Boolean {
         permissionResults.forEach { permissionResult ->
             if (permissionResult.not()) return false
+        }
+        return true
+    }
+
+    fun isPermissionGranted(): Boolean {
+        readWritePermissionRequest().forEach { permission ->
+            if (PackageManager.PERMISSION_GRANTED != ContextCompat.checkSelfPermission(requireContext(), permission)) return false
         }
         return true
     }

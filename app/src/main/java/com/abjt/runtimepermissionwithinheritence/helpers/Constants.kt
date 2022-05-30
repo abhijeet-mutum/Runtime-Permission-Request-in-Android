@@ -9,3 +9,5 @@ enum class Permissions(val permissionName: String){
     READ_PERMISSION(Manifest.permission.READ_EXTERNAL_STORAGE),
     WRITE_PERMISSION(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 }
+
+fun readWritePermissionRequest() = arrayOf(Permissions.READ_PERMISSION.permissionName, Permissions.WRITE_PERMISSION.permissionName)
